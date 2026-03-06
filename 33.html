@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allergic Disorders – Chapter 33 Exam</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(145deg, #8c7aa2, #bcadd4);
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+        
+        .container {
+            width: 100vw;
+            height: 100vh;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 0 40px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            background: linear-gradient(145deg, #735f89, #a690c4);
+            color: white;
+            padding: 20px 30px;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 85px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            border-bottom: 4px solid #4e3e60;
+        }
+        
+        .header-content {
+            flex: 1;
+        }
+        
+        .header h1 {
+            font-size: 1.6rem;
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.95;
+            margin-top: 5px;
+            font-weight: 500;
+        }
+        
+        .counter {
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            min-width: 100px;
+            text-align: center;
+            white-space: nowrap;
+            margin-left: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(5px);
+        }
+        
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: #e5dbf0;
+            flex-shrink: 0;
+            position: relative;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #a690c4, #735f89);
+            height: 100%;
+            width: 0%;
+            transition: width 0.4s ease;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            padding: 30px;
+            background: #f7f2fc;
+        }
+        
+        .question-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border: 3px solid #cfc0e3;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+        
+        .question-header {
+            display: flex;
+            gap: 25px;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+        
+        .question-number {
+            background: linear-gradient(145deg, #a690c4, #735f89);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            font-weight: bold;
+            flex-shrink: 0;
+            box-shadow: 0 6px 20px rgba(115,95,137,0.4);
+        }
+        
+        .question-text {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            color: #4e3e60;
+            flex-grow: 1;
+            font-weight: 600;
+            padding-right: 15px;
+        }
+        
+        .options-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .option {
+            padding: 20px;
+            border: 3px solid #cfc0e3;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 1.15rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        
+        .option:hover {
+            background: #e9e0f5;
+            border-color: #a690c4;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(166,144,196,0.15);
+        }
+        
+        .option-letter {
+            background: linear-gradient(145deg, #a690c4, #735f89);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            border: 3px solid #735f89;
+        }
+        
+        .option.correct {
+            background: linear-gradient(145deg, #66bb6a, #43a047);
+            border-color: #43a047;
+            color: white;
+        }
+        
+        .option.correct .option-letter {
+            background: #43a047;
+            color: white;
+            border-color: #388e3c;
+        }
+        
+        .option.incorrect {
+            background: linear-gradient(145deg, #ef5350, #e53935);
+            border-color: #e53935;
+            color: white;
+        }
+        
+        .option.incorrect .option-letter {
+            background: #e53935;
+            color: white;
+            border-color: #d32f2f;
+        }
+        
+        .feedback-area {
+            flex-shrink: 0;
+        }
+        
+        .feedback {
+            padding: 25px;
+            border-radius: 15px;
+            display: none;
+            align-items: center;
+            gap: 20px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            animation: slideIn 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .feedback.correct {
+            background: linear-gradient(145deg, #c8e6c9, #a5d6a7);
+            border: 3px solid #43a047;
+            color: #1b5e20;
+            display: flex;
+        }
+        
+        .feedback.incorrect {
+            background: linear-gradient(145deg, #ffcdd2, #ef9a9a);
+            border: 3px solid #e53935;
+            color: #b71c1c;
+            display: flex;
+        }
+        
+        .feedback-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+        
+        .rationale {
+            background: linear-gradient(145deg, #efe6fa, #e3d7f2);
+            border: 3px solid #8c7aa2;
+            border-radius: 15px;
+            padding: 25px;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .rationale.show {
+            display: block;
+        }
+        
+        .rationale h4 {
+            color: #735f89;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.3rem;
+        }
+        
+        .rationale p {
+            color: #584671;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            background: #cfc0e3;
+            border-top: 3px solid #bba8d7;
+            flex-shrink: 0;
+            height: 80px;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            white-space: nowrap;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(145deg, #a690c4, #735f89);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(115,95,137,0.4);
+            background: linear-gradient(145deg, #735f89, #4e3e60);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(145deg, #90a4ae, #607d8b);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(96,125,139,0.4);
+            background: linear-gradient(145deg, #607d8b, #455a64);
+        }
+        
+        .btn-cancel {
+            background: linear-gradient(145deg, #ef5350, #e53935);
+            color: white;
+            display: none;
+        }
+        
+        .btn-cancel:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(229,57,53,0.4);
+            background: linear-gradient(145deg, #e53935, #c62828);
+        }
+        
+        .btn-cancel.show {
+            display: flex;
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                height: 75px;
+                padding: 15px 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.3rem;
+            }
+            
+            .question-text {
+                font-size: 1.2rem;
+            }
+            
+            .option {
+                padding: 15px;
+                font-size: 1.05rem;
+                gap: 15px;
+            }
+            
+            .option-letter {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .question-area {
+                padding: 20px;
+            }
+            
+            .navigation {
+                padding: 15px 20px;
+                height: 70px;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            
+            .nav-buttons {
+                gap: 10px;
+            }
+        }
+        
+        @media (max-height: 700px) {
+            .header {
+                height: 70px;
+                padding: 15px 20px;
+            }
+            
+            .question-area {
+                padding: 20px;
+            }
+            
+            .question-text {
+                font-size: 1.2rem;
+            }
+            
+            .option {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="header-content">
+            <h1>🌸 Allergic Disorders (Chapter 33)</h1>
+            <div class="subtitle">39 NCLEX-style questions with rationales</div>
+        </div>
+        <div class="counter" id="counter">1/39</div>
+    </div>
+    
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    
+    <div class="main-content">
+        <div class="question-area">
+            <div class="question-header">
+                <div class="question-number" id="questionNumber">1</div>
+                <div class="question-text" id="question"></div>
+            </div>
+            
+            <div class="options-container" id="options"></div>
+        </div>
+        
+        <div class="feedback-area">
+            <div class="feedback" id="feedback">
+                <div class="feedback-icon" id="feedbackIcon"></div>
+                <div id="feedbackText"></div>
+            </div>
+            <div class="rationale" id="rationale">
+                <h4>📘 RATIONALE:</h4>
+                <p id="rationaleText"></p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="navigation">
+        <button class="btn btn-secondary" id="prevBtn" onclick="previousCard()">
+            ⬅️ Previous
+        </button>
+        <div class="nav-buttons">
+            <button class="btn btn-cancel" id="cancelBtn" onclick="cancelSelection()">
+                ❌ Cancel
+            </button>
+            <button class="btn btn-primary" id="nextBtn" onclick="nextCard()">
+                Next ➡️
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Chapter 33: Assessment and Management of Patients with Allergic Disorders – 39 questions (exact from document)
+    const questions = [
+        {
+            id: 1,
+            question: "1. A client received a bee sting on the lip approximately 2 hours ago and has arrived at an urgent/walk-in clinic for treatment because the swelling is now accompanied by nasal congestion. On assessment, the client reports pruritus and a sensation of warmth at the site. Which degree of anaphylaxis is the client experiencing?",
+            options: [
+                "A. No systemic reaction",
+                "B. Moderate systemic reaction",
+                "C. Severe systemic reaction",
+                "D. Mild systemic reaction"
+            ],
+            correct: 3, // D
+            rationale: "Mild systemic reactions begin within the first 2 hours after the exposure, and consist of cluster tingling and a sensation of warmth. Nasal congestion, periorbital swelling, pruritus, sneezing, and tearing of the eyes is expected. While onset timing is the same, moderate systemic reactions include bronchospasm, edema of the airways or larynx with dyspnea, cough, and wheezing. Severe systemic reactions have an abrupt onset with symptoms progressing rapidly to bronchospasm, laryngeal edema, severe dyspnea, cyanosis, and hypotension. Severe systemic reaction should be considered as an emergent situation. A systemic reaction occurred as a vector (the bee sting) and a reaction (signs/symptoms) resulted. (PTS:1 REF:p.1046)"
+        },
+        {
+            id: 2,
+            question: "2. A client with a family history of allergies has experienced an allergic response based on a genetic predisposition. This atopic response is usually mediated by which immunoglobulin (Ig)?",
+            options: [
+                "A. IgA",
+                "B. IgM",
+                "C. IgG",
+                "D. IgE"
+            ],
+            correct: 3, // D
+            rationale: "Atopy refers to allergic reactions characterized by the action of IgE antibodies and a genetic predisposition to allergic reactions. IgE (0.004% of total Ig) appears in serum; takes part in allergic and some hypersensitivity reactions; and combats parasitic infections. IgA (15% of total Ig) appears in body fluids (blood, saliva, tears, and breast milk, as well as pulmonary, gastrointestinal, prostatic, and vaginal secretions); protects against respiratory, gastrointestinal, and genitourinary infections; prevents absorption of antigens from food; and passes to neonate in breast milk for protection. IgM (10% of total Ig) appears mostly in intravascular serum; appears as the first Ig produced in response to bacterial and viral infections; and activates the complement system. IgG (75% of total Ig) appears in serum and tissues (interstitial fluid); assumes a major role in bloodborne and tissue infections; activates the complement system; enhances phagocytosis; and crosses the placenta. (PTS:1 REF:p.1039)"
+        },
+        {
+            id: 3,
+            question: "3. An office worker eats a cookie that contains peanut butter. The worker begins wheezing, with an inspiratory stridor and air hunger, and the occupational health nurse is called to the office. The nurse should recognize that the worker is likely suffering from which type of hypersensitivity?",
+            options: [
+                "A. Anaphylactic (type 1)",
+                "B. Cytotoxic (type II)",
+                "C. Immune complex (type III)",
+                "D. Delayed-type (type IV)"
+            ],
+            correct: 0, // A
+            rationale: "The most severe form of a hypersensitivity reaction is anaphylaxis. An unanticipated severe allergic reaction that is often explosive in onset, anaphylaxis is characterized by edema in many tissues, including the larynx, and is often accompanied by hypotension, bronchospasm, and cardiovascular collapse in severe cases. Type II, or cytotoxic, hypersensitivity occurs when the system mistakenly identifies a normal constituent of the body as foreign. Immune complex (type III) hypersensitivity involves immune complexes formed when antigens bind to antibodies. Type III is associated with systemic lupus erythematosus, rheumatoid arthritis, certain types of nephritis, and bacterial endocarditis. Delayed-type (type IV), also known as cellular hypersensitivity, occurs 24 to 72 hours after exposure to an allergen. (PTS:1 REF:p.1046)"
+        },
+        {
+            id: 4,
+            question: "4. A client is learning about a new diagnosis of asthma with the asthma nurse. What medication will best prevent the onset of acute asthma exacerbations?",
+            options: [
+                "A. Diphenhydramine",
+                "B. Montelukast",
+                "C. Albuterol sulfate",
+                "D. Epinephrine"
+            ],
+            correct: 1, // B
+            rationale: "Many manifestations of inflammation can be attributed in part to leukotrienes. Medications categorized as leukotriene antagonists or modifiers such as montelukast block the synthesis or action of leukotrienes and prevent signs and symptoms associated with asthma. Diphenhydramine prevents histamine's effect on smooth muscle. Albuterol sulfate relaxes smooth muscle during an asthma attack. Epinephrine relaxes bronchial smooth muscle but is not used on a preventative basis. (PTS:1 REF:p.1052)"
+        },
+        {
+            id: 5,
+            question: "5. A nurse is preparing a client for allergy skin testing. What precautionary step is most important for the nurse to follow?",
+            options: [
+                "A. The client must not have received an immunization within 7 days.",
+                "B. The nurse should administer albuterol 30 to 45 minutes prior to the test.",
+                "C. Prophylactic epinephrine should be given before the test.",
+                "D. Emergency equipment should be readily available."
+            ],
+            correct: 3, // D
+            rationale: "Emergency equipment must be readily available during testing to treat anaphylaxis. Immunizations do not contraindicate testing. Neither epinephrine nor albuterol is given prior to testing. (PTS:1 REF:p.1044)"
+        },
+        {
+            id: 6,
+            question: "6. A client is scheduled for a skin test. The client informs the nurse that the client used a corticosteroid earlier today to alleviate allergy symptoms. Which nursing intervention should the nurse implement?",
+            options: [
+                "A. Note the corticosteroid use in the electronic health record and continue with the test.",
+                "B. Modify the skin test to check for grass, mold, or dust allergies only.",
+                "C. Administer sodium valproate to reverse the effects of corticosteroid usage.",
+                "D. Cancel and reschedule the skin test when the client stops taking the corticosteroid."
+            ],
+            correct: 3, // D
+            rationale: "Corticosteroids and antihistamines, including over-the-counter allergy medications, suppress skin test reactivity and should be stopped 48 to 96 hours before testing, depending on the duration of their activity. If the client takes one of these medications within this time frame, the nurse should cancel the skin test and reschedule for a time when the client is not taking it. The nurse should not continue with the test. The nurse should not modify the test. Administration of sodium valproate is used to reverse corticosteroid-induced mania, not to reverse it effects, in general. (PTS:1 REF:p.1045)"
+        },
+        {
+            id: 7,
+            question: "7. A client has developed severe contact dermatitis with burning, itching, cracking, and peeling of the skin on the client's hands. What should the nurse teach the client to do?",
+            options: [
+                "A. Wear powdered latex gloves when in public.",
+                "B. Wash her hands with antibacterial soap every few hours.",
+                "C. Maintain room temperature at 75 to 80°F (24° to 27°C) whenever possible.",
+                "D. Keep the hands well moisturized at all times."
+            ],
+            correct: 3, // D
+            rationale: "Powdered latex gloves can cause contact dermatitis. Skin should be kept well hydrated and should be washed with mild soap. Maintaining room temperature at 75 to 80°F (24° to 27°C) is excessively warm. (PTS:1 REF:p.1064)"
+        },
+        {
+            id: 8,
+            question: "8. A client with severe environmental allergies is scheduled for an immunotherapy injection. What should be included in teaching the client about this treatment?",
+            options: [
+                "A. The client will be given a low dose of epinephrine before the treatment.",
+                "B. The client will remain in the clinic to be monitored for 30 minutes following the injection.",
+                "C. Therapeutic failure occurs if the symptoms to the allergen do not decrease after 3 months.",
+                "D. The allergen will be given by the peripheral intravenous (IV) route."
+            ],
+            correct: 1, // B
+            rationale: "Although severe systemic reactions are rare, the risk of systemic and potentially fatal anaphylaxis exists. Because of this risk, the client must remain in the office or clinic for at least 30 minutes after the injection and is observed for possible systemic symptoms. Therapeutic failure is evident when a client does not experience a decrease in symptoms within 12 to 24 months. Epinephrine is not given prior to treatment and the IV route is not used. (PTS:1 REF:p.1053)"
+        },
+        {
+            id: 9,
+            question: "9. The nurse in an allergy clinic is educating a new client about the pathology of the client's health problem. What response should the nurse describe as a possible consequence of histamine release?",
+            options: [
+                "A. Constriction of small venules",
+                "B. Contraction of bronchial smooth muscle",
+                "C. Dilation of large blood vessels",
+                "D. Decreased secretions from gastric and mucosal cells"
+            ],
+            correct: 1, // B
+            rationale: "Histamine's effects during the immune response include contraction of bronchial smooth muscle, resulting in wheezing and bronchospasm, dilation of small venules, constriction of large blood vessels, and an increase in secretion of gastric and mucosal cells. (PTS:1 REF:p.1040)"
+        },
+        {
+            id: 10,
+            question: "10. The nurse is providing care for a client who has experienced a type I hypersensitivity reaction. Which client would have this type of reaction?",
+            options: [
+                "A. A client with an anaphylactic reaction after a bee sting",
+                "B. A client with a skin reaction resulting from adhesive tape",
+                "C. A client with a diagnosis of myasthenia gravis",
+                "D. A client with rheumatoid arthritis"
+            ],
+            correct: 0, // A
+            rationale: "Anaphylactic (type I) hypersensitivity is an immediate reaction mediated by immunoglobulin E antibodies and requires previous exposure to the specific antigen. Skin reactions are more commonly type IV, and myasthenia gravis is thought to be a type II reaction. Rheumatoid arthritis is not a type I hypersensitivity reaction. (PTS:1 REF:p.1041)"
+        },
+        {
+            id: 11,
+            question: "11. A nurse is caring for a client who has had an anaphylactic reaction after a bee sting. The nurse is providing client teaching prior to the client's discharge. In the event of an anaphylactic reaction, the nurse explains that the client should self-administer epinephrine at which site?",
+            options: [
+                "A. Forearm",
+                "B. Thigh",
+                "C. Deltoid muscle",
+                "D. Abdomen"
+            ],
+            correct: 1, // B
+            rationale: "The client is taught to position the device at the middle portion of the thigh and push the device into the thigh as far as possible. The device will automatically inject a premeasured dose of epinephrine into the subcutaneous tissue. The muscle of the lateral thigh is the best site to administer epinephrine because it is one of the largest muscles in the body and has significant blood flow, which allows more rapid absorption of the medication than in the smaller muscles in the forearm or shoulder (deltoid) or subcutaneously in the abdomen. (PTS:1 REF:p.1048)"
+        },
+        {
+            id: 12,
+            question: "12. A nurse has included the nursing diagnosis of Risk for Latex Allergy Response in a client's plan of care. The presence of which chronic health problem would most likely prompt this diagnosis?",
+            options: [
+                "A. Herpes simplex",
+                "B. Human immunodeficiency virus (HIV)",
+                "C. Spina bifida",
+                "D. Hypogammaglobulinemia"
+            ],
+            correct: 2, // C
+            rationale: "Clients with spina bifida are at a particularly high risk for developing a latex allergy. Clients with spina bifida are at high risk because they have had multiple surgeries, multiple urinary catheterization procedures, and other treatments involving use of latex products, and latex allergy develops as a result of repeated exposure to the proteins and polypeptides in natural rubber latex. Clients with herpes simplex, HIV, or hypogammaglobulinemia (decreased level of gamma immunoglobulins) are less likely than clients with spina bifida to have as many surgeries or other treatments that would expose them to latex. (PTS:1 REF:p.1062)"
+        },
+        {
+            id: 13,
+            question: "13. A client has been diagnosed with Stevens-Johnson syndrome. Which factors are common triggers of this condition? Select all that apply.",
+            options: [
+                "A. Tamoxifen and vemurafenib",
+                "B. Exposure to cold objects, cold fluids, or cold air",
+                "C. Allopurinol and nevirapine",
+                "D. Wearing clothing washed in a detergent",
+                "E. Radiation in combination with phenytoin"
+            ],
+            correct: [0,2,4], // A, C, E
+            rationale: "Stevens-Johnson syndrome is a severe reaction commonly triggered by medication. The syndrome can evolve into extensive epidermal necrosis and become life-threatening. Among the many medications that trigger this condition are tamoxifen, vemurafenib, allopurinol and nevirapine. The combination of radiation and antiepileptic drugs such as phenytoin can also trigger this condition. Exposure to cold objects, cold fluids, or cold air can trigger cold urticaria, resulting in wheals (hives) or angioedema, but would not trigger Steven-Johnson syndrome. Wearing clothing washed in a detergent can trigger contact dermatitis but would not trigger Steven-Johnson syndrome. (PTS:1 REF:p.1058)"
+        },
+        {
+            id: 14,
+            question: "14. A client is undergoing testing for food allergies after experiencing unexplained signs and symptoms of hypersensitivity. Which food items would the nurse inform the client are common allergens?",
+            options: [
+                "A. Citrus fruits and rice",
+                "B. Root vegetables and tomatoes",
+                "C. Eggs and wheat",
+                "D. Hard cheeses and vegetable oils"
+            ],
+            correct: 2, // C
+            rationale: "The most common food allergens are seafood (lobster, shrimp, crab, clams, fin fish), peanuts, tree nuts, eggs, wheat, milk, and soy. Citrus fruits, rice, root vegetables, tomatoes, hard cheeses, and vegetable oils are not common allergens. (PTS:1 REF:p.1061)"
+        },
+        {
+            id: 15,
+            question: "15. A client has been admitted to the emergency department with signs of anaphylaxis following a bee sting. The nurse knows that if this is a true allergic reaction the client will present with what alteration in laboratory values?",
+            options: [
+                "A. Increased eosinophils",
+                "B. Increased neutrophils",
+                "C. Increased serum albumin",
+                "D. Decreased blood glucose"
+            ],
+            correct: 0, // A
+            rationale: "Higher percentages of eosinophils are considered moderate to severe eosinophilia. Moderate eosinophilia is defined as 15% to 40% eosinophils and is found in clients with allergic disorders. Hypersensitivity does not result in hypoglycemia or increased albumin and neutrophil counts. (PTS:1 REF:p.1041)"
+        },
+        {
+            id: 16,
+            question: "16. A nurse should prioritize and closely monitor a client for a potentially severe anaphylactic reaction after the client has received which medical intervention?",
+            options: [
+                "A. Measles-mumps-rubella vaccine",
+                "B. Rapid administration of intravenous fluids",
+                "C. Computed tomography with contrast solution",
+                "D. Nebulized bronchodilator"
+            ],
+            correct: 2, // C
+            rationale: "The most severe anaphylaxis, sometimes referred to as anaphylactic shock, is caused by antibiotics and radiocontrast agents. The computed tomography scan with contrast dye uses these agents. Vaccines can produce an anaphylactic reaction but are usually localized and not severe. Intravenous fluid and bronchodilators may be used to manage anaphylaxis in clients with symptoms of bronchospasm or hypotension, but they are not typically associated with triggering anaphylactic shock themselves. (PTS:1 REF:p.1046)"
+        },
+        {
+            id: 17,
+            question: "17. After the completion of testing, a 7-year-old client's allergies have been attributed to the family's cat. When introducing the family to the principles of avoidance therapy, the nurse should promote which action?",
+            options: [
+                "A. Removing the cat from the family's home",
+                "B. Administering over-the-counter antihistamines to the client regularly",
+                "C. Keeping the cat restricted from the client's bedroom",
+                "D. Maximizing airflow in the house"
+            ],
+            correct: 0, // A
+            rationale: "In avoidance therapy, every attempt is made to remove the allergens that act as precipitating factors. Fully removing the cat from the environment is preferable to just keeping the cat out of the client's bedroom. Avoidance therapy does not involve improving airflow or using antihistamines. (PTS:1 REF:p.1049)"
+        },
+        {
+            id: 18,
+            question: "18. The nurse is providing health education to the parents of a 3-year-old who has been diagnosed with food allergies. Which statement should the nurse make when teaching this family about the child's health problem?",
+            options: [
+                "A. 'Food allergies are a lifelong condition, but most families adjust well to the necessary lifestyle changes.'",
+                "B. 'Consistent use of over-the-counter antihistamines can often help a child overcome food allergies.'",
+                "C. 'Make sure that you carry a steroid inhaler with you at all times, especially when you eat in restaurants.'",
+                "D. 'Many children outgrow their food allergies in a few years if they avoid the offending foods.'"
+            ],
+            correct: 3, // D
+            rationale: "Many food allergies disappear with time, particularly in children. About one third of proven allergies disappear in 1 to 2 years if the client carefully avoids the offending food. Antihistamines do not cure allergies, and an EpiPen is carried for clients with food allergies, not a steroid inhaler. (PTS:1 REF:p.1061)"
+        },
+        {
+            id: 19,
+            question: "19. A 5-year-old has been diagnosed with a severe walnut allergy after experiencing an anaphylactic reaction. Which topic is the nurse's priority when providing health education to the family?",
+            options: [
+                "A. Beginning immunotherapy",
+                "B. Carrying an epinephrine pen",
+                "C. Maintaining the child's immunization status",
+                "D. Avoiding all foods that have a high potential for allergies"
+            ],
+            correct: 1, // B
+            rationale: "All clients with food allergies, especially seafood and nuts, should have an EpiPen device prescribed. The child does not necessarily need to avoid all common food allergens. Immunotherapy is not indicated in the treatment of childhood food allergies. Immunizations are important, but do not address food allergies. (PTS:1 REF:p.1063)"
+        },
+        {
+            id: 20,
+            question: "20. A client's history of skin hyperreactivity and inflammation has been attributed to atopic dermatitis. The nurse should recognize that this client consequently faces an increased risk of which health problem?",
+            options: [
+                "A. Bronchitis",
+                "B. Systemic lupus erythematosus (SLE)",
+                "C. Rheumatoid arthritis (RA)",
+                "D. Asthma"
+            ],
+            correct: 3, // D
+            rationale: "Nurses should be aware that atopic dermatitis is often the first step in a process, known as atopic march, that leads to asthma and allergic rhinitis. It is not linked as closely to bronchitis, SLE, or RA. (PTS:1 REF:p.1057)"
+        },
+        {
+            id: 21,
+            question: "21. The nurse is planning the care of a client who has a diagnosis of atopic dermatitis, which commonly affects both of her hands and forearms. What risk nursing diagnosis should the nurse include in the client's care plan?",
+            options: [
+                "A. Risk for disturbed body image related to skin lesions",
+                "B. Risk for disuse syndrome related to dermatitis",
+                "C. Risk for ineffective role performance related to dermatitis",
+                "D. Risk for self-care deficit related to skin lesions"
+            ],
+            correct: 0, // A
+            rationale: "The highly visible skin lesions associated with atopic dermatitis constitute a risk for disturbed body image. This may culminate in ineffective role performance, but this is not likely the case for the majority of clients. Dermatitis is unlikely to cause a disuse syndrome or self-care deficit. (PTS:1 REF:p.1057)"
+        },
+        {
+            id: 22,
+            question: "22. A client has been brought to the emergency department after being found unresponsive, and anaphylaxis is suspected. The care team should attempt to assess for which potential causes of anaphylaxis? Select all that apply.",
+            options: [
+                "A. Foods",
+                "B. Medications",
+                "C. Insect stings",
+                "D. Autoimmunity",
+                "E. Environmental pollutants"
+            ],
+            correct: [0,1,2], // A, B, C
+            rationale: "Substances that most commonly cause anaphylaxis include foods, medications, insect stings, and latex. Pollutants do not commonly cause anaphylaxis and autoimmune processes are more closely associated with types II and III hypersensitivities. (PTS:1 REF:p.1047)"
+        },
+        {
+            id: 23,
+            question: "23. A school nurse is caring for a 10-year-old who appears to be having an allergic response. Which intervention should be the initial action of the school nurse?",
+            options: [
+                "A. Assess for signs and symptoms of anaphylaxis.",
+                "B. Assess for erythema and urticaria.",
+                "C. Administer an over-the-counter (OTC) antihistamine.",
+                "D. Administer epinephrine."
+            ],
+            correct: 0, // A
+            rationale: "If a client is experiencing an allergic response, the nurse's initial action is to assess the client for signs and symptoms of anaphylaxis. Erythema and urticaria may be present, but these are not the most significant or most common signs of anaphylaxis. Assessment must precede interventions, such as administering an antihistamine. Epinephrine is indicated in the treatment of anaphylaxis, not for every allergic reaction. (PTS:1 REF:p.1047)"
+        },
+        {
+            id: 24,
+            question: "24. A client is receiving a transfusion of packed red blood cells. Shortly after initiation of the transfusion, the client begins to exhibit signs and symptoms of a transfusion reaction. The client is suffering from which type of hypersensitivity?",
+            options: [
+                "A. Anaphylactic (type 1)",
+                "B. Cytotoxic (type II)",
+                "C. Immune complex (type III)",
+                "D. Delayed type (type IV)"
+            ],
+            correct: 1, // B
+            rationale: "A type II hypersensitivity reaction resulting in red blood cell destruction is associated with blood transfusions. This type of reaction does not result from types I, III, or IV reactions. (PTS:1 REF:p.1041)"
+        },
+        {
+            id: 25,
+            question: "25. Which of the following individuals would be the most appropriate candidate for immunotherapy?",
+            options: [
+                "A. A client who had an anaphylactic reaction to an insect sting",
+                "B. A child with allergies to eggs and dairy",
+                "C. A client who has had a positive tuberculin skin test",
+                "D. A client with severe allergies to grass and tree pollen"
+            ],
+            correct: 3, // D
+            rationale: "The benefit of immunotherapy has been fairly well established in instances of allergic rhinitis and bronchial asthma that are clearly due to sensitivity to one of the common pollens, molds, or household dust. Immunotherapy is not used to treat type I hypersensitivities. A positive tuberculin skin test is not an indication for immunotherapy. (PTS:1 REF:p.1053)"
+        },
+        {
+            id: 26,
+            question: "26. A nurse has asked the nurse educator if there is any way to predict the severity of a client's anaphylactic reaction. Which response by the nurse educator would be best?",
+            options: [
+                "A. 'The faster the onset of symptoms, the more severe the reaction.'",
+                "B. 'The reaction will be about one-third more severe than the client's last reaction to the same antigen.'",
+                "C. 'There is no way to gauge the severity of a client's anaphylaxis, even if it has occurred repeatedly in the past.'",
+                "D. 'The reaction will generally be slightly less severe than the last reaction to the same antigen.'"
+            ],
+            correct: 0, // A
+            rationale: "The time from exposure to the antigen to onset of symptoms is a good indicator of the severity of the reaction: the faster the onset, the more severe the reaction. None of the other statements is an accurate description of the course of anaphylactic reactions. (PTS:1 REF:p.1046)"
+        },
+        {
+            id: 27,
+            question: "27. A nurse knows of several clients who have achieved adequate control of their allergy symptoms using over-the-counter antihistamines. Antihistamines would be contraindicated in the care of which client?",
+            options: [
+                "A. A client who has previously been treated for tuberculosis",
+                "B. A client who is at 30 weeks' gestation",
+                "C. A client who is on estrogen-replacement therapy",
+                "D. A client with a severe allergy to eggs"
+            ],
+            correct: 1, // B
+            rationale: "Antihistamines are contraindicated during the third trimester of pregnancy. Previous tuberculosis, hormone therapy, and food allergies do not contraindicate the use of antihistamines. (PTS:1 REF:p.1051)"
+        },
+        {
+            id: 28,
+            question: "28. A client has been living with seasonal allergies for many years, but does not take antihistamines, stating, 'When I was young, I used to take antihistamines, but they always put me to sleep.' How should the nurse best respond?",
+            options: [
+                "A. 'Newer antihistamines are combined with a stimulant that offsets drowsiness.'",
+                "B. 'Most people find that they develop a tolerance to sedation after a few months.'",
+                "C. 'The newer antihistamines are different than in years past, and cause less sedation.'",
+                "D. 'Have you considered taking them at bedtime instead of in the morning?'"
+            ],
+            correct: 2, // C
+            rationale: "Unlike first-generation H1 receptor antagonists, newer antihistamines bind to peripheral rather than central nervous system H1 receptors, causing less sedation, if any at all. Tolerance to sedation did not usually occur with first-generation drugs, and newer antihistamines are not combined with a stimulant. Although taking an antihistamine at bedtime may be a suitable option for the client, it is not the nurse's best response because it does not inform the client of the newer antihistamines, which cause little or no sedation and thus could be taken any time of day. (PTS:1 REF:p.1050)"
+        },
+        {
+            id: 29,
+            question: "29. A client has been transported to the emergency department after a severe allergic reaction. How should the nurse evaluate the client's respiratory status? Select all that apply.",
+            options: [
+                "A. Facilitate lung function testing.",
+                "B. Assess breath sounds.",
+                "C. Measure the client's oxygen saturation by oximeter.",
+                "D. Monitor the client's respiratory pattern.",
+                "E. Assess the client's respiratory rate."
+            ],
+            correct: [1,2,3,4], // B, C, D, E
+            rationale: "The respiratory status is evaluated by monitoring the respiratory rate and pattern and by assessing for breathing difficulties, low oxygen saturation, or abnormal lung sounds such as wheezing. Lung function testing is a lengthy procedure that is not appropriate in an emergency context. (PTS:1 REF:p.1054)"
+        },
+        {
+            id: 30,
+            question: "30. A client with multiple food and environmental allergies expresses frustration and anger over having to be so watchful all the time and wonders if it is really worth it. Which response by the nurse would be best?",
+            options: [
+                "A. 'I can only imagine how you feel. Would you like to talk about it?'",
+                "B. 'Let's find a quiet spot, and I'll teach you a few coping strategies.'",
+                "C. 'That's the same way that most clients who have a chronic illness feel.'",
+                "D. 'Do you think that maybe you could be managing things more efficiently?'"
+            ],
+            correct: 0, // A
+            rationale: "To assist the client in adjusting to these modifications, the nurse must have an appreciation of the difficulties encountered by the client. The client is encouraged to verbalize feelings and concerns in a supportive environment and to identify strategies to deal with them effectively. The nurse should not suggest that the client has been mismanaging this health problem, and the nurse should not make comparisons with other clients. Further assessment should precede educational interventions. (PTS:1 REF:p.1054)"
+        },
+        {
+            id: 31,
+            question: "31. A nurse at an allergy clinic is providing education for a client starting immunotherapy for the treatment of allergies. Which education should the nurse prioritize?",
+            options: [
+                "A. Scheduling appointments for the same time each month",
+                "B. Keeping appointments for desensitization procedures",
+                "C. Avoiding antihistamines for the duration of treatment",
+                "D. Keeping a diary of reactions to the immunotherapy"
+            ],
+            correct: 1, // B
+            rationale: "The nurse informs and reminds the client of the importance of keeping appointments for desensitization procedures, because dosages are usually adjusted on a weekly basis, and missed appointments may interfere with the dosage adjustment. Appointments are more frequent than monthly, and antihistamines are not contraindicated. There is no need to keep a diary of reactions. (PTS:1 REF:p.1054)"
+        },
+        {
+            id: 32,
+            question: "32. A client has presented with signs and symptoms that are consistent with contact dermatitis. Which aspect of care should the nurse prioritize when working with this client?",
+            options: [
+                "A. Promoting adequate perfusion in affected regions",
+                "B. Promoting safe use of topical antihistamines",
+                "C. Identifying the offending agent, if possible",
+                "D. Teaching the client to safely use an EpiPen"
+            ],
+            correct: 2, // C
+            rationale: "Identifying the offending agent is a priority in the care of a client with dermatitis. This provides a cure via removal of the offending agent, rather than being limited to treating the symptoms. Topical antihistamines can provide some relief from itching, especially with allergic dermatitis, but identifying and removing the offending agent takes is a higher priority, as it would allow the client to not need to use a topical antihistamine. An epinephrine auto injector (EpiPen) is typically used to treat anaphylaxis, not contact dermatitis. Inadequate perfusion occurs with peripheral artery disease or vasoconstriction but is not associated with contact dermatitis. (PTS:1 REF:p.1057)"
+        },
+        {
+            id: 33,
+            question: "33. A client was prescribed an oral antibiotic for the treatment of sinusitis. The client has now stopped, reporting the development of a rash shortly after taking the first dose of the drug. Which response by the nurse would be most appropriate?",
+            options: [
+                "A. Encourage the client to continue with the medication while monitoring the skin condition closely.",
+                "B. Refer the client to a primary care provider to have the medication changed.",
+                "C. Arrange for the client to go to the nearest emergency department.",
+                "D. Encourage the client to take an over-the-counter antihistamine with each dose of the antibiotic."
+            ],
+            correct: 1, // B
+            rationale: "On discovery of a medication allergy, clients are warned that they have a hypersensitivity to a particular medication and are advised not to take it again. As a result, the client would need to liaise with the primary provider. There is no need for emergency care unless symptoms worsen to involve respiratory function. An antihistamine would not be an adequate or appropriate recommendation from the nurse. (PTS:1 REF:p.1058)"
+        },
+        {
+            id: 34,
+            question: "34. A client has sought care, stating that the client developed hives overnight. The nurse's inspection confirms the presence of urticaria. What type of allergic hypersensitivity reaction has the client developed?",
+            options: [
+                "A. Type I",
+                "B. Type II",
+                "C. Type III",
+                "D. Type IV"
+            ],
+            correct: 0, // A
+            rationale: "Type I hypersensitivity reactions are unanticipated severe allergic reactions that are rapid in onset, characterized by edema in many tissues, including the larynx, and often accompanied by hypotension, bronchospasm, and cardiovascular collapse in severe cases. Urticaria (hives) is a type I hypersensitive allergic reaction of the skin that is characterized by the sudden appearance of intensely pruritic pink or red discrete papules that progress to wheals of variable size. Type II, or cytotoxic, hypersensitivity reactions occur when antibodies are directed against antigens on cells or basement membranes of tissues. Examples of type II reactions are myasthenia gravis, Goodpasture syndrome, pernicious anemia, hemolytic disease of the newborn, transfusion reaction, and thrombocytopenia. Type III, or immune complex, hypersensitivity reactions are damaging inflammatory reactions caused by the insoluble immune complexes formed by antigens that bind to antibodies. Examples of type III reactions include systemic lupus erythematosus, serum sickness, nephritis, and rheumatoid arthritis. Type IV, or delayed, hypersensitivity reactions are T cell–mediated immune reactions that typically occur 24 to 48 hours after exposure to an antigen. Examples of type IV reactions include contact dermatitis, graft-versus-host disease, Hashimoto's thyroiditis, and sarcoidosis. (PTS:1 REF:p.1057)"
+        },
+        {
+            id: 35,
+            question: "35. The nurse is providing care for a client who has a diagnosis of hereditary angioedema. When planning this client's care, what nursing diagnosis should be prioritized?",
+            options: [
+                "A. Risk for infection related to skin sloughing",
+                "B. Risk for acute pain related to loss of skin integrity",
+                "C. Risk for impaired skin integrity related to cutaneous lesions",
+                "D. Risk for impaired gas exchange related to airway obstruction"
+            ],
+            correct: 3, // D
+            rationale: "Edema of the respiratory tract can compromise the airway in clients with hereditary angioedema. As such, this is a priority nursing diagnosis over pain and possible infection. Skin integrity is not threatened by angioedema. (PTS:1 REF:p.1060)"
+        },
+        {
+            id: 36,
+            question: "36. A junior nursing student is having an observation day in the operating room. Early in the day, the student reports eye swelling and dyspnea to the OR nurse. What should the nurse suspect?",
+            options: [
+                "A. Cytotoxic reaction due to contact with the powder in the gloves",
+                "B. Immune complex reaction due to contact with anesthetic gases",
+                "C. Anaphylaxis due to a latex allergy",
+                "D. Delayed reaction due to exposure to cleaning products"
+            ],
+            correct: 2, // C
+            rationale: "Immediate hypersensitivity to latex, a type I allergic reaction, is mediated by the IgE mast cell system. Symptoms can include rhinitis, conjunctivitis, asthma, and anaphylaxis. The term latex allergy is usually used to describe the type I reaction. The rapid onset is not consistent with a cytotoxic reaction, an immune complex reaction, or a delayed reaction. (PTS:1 REF:p.1062)"
+        },
+        {
+            id: 37,
+            question: "37. A nurse is caring for a client who has allergic rhinitis. What intervention would be most likely to help the client meet the goal of improved breathing pattern?",
+            options: [
+                "A. Teach the client to take deep breaths and cough frequently.",
+                "B. Use antihistamines daily throughout the year.",
+                "C. Teach the client to seek medical attention at the first sign of an allergic reaction.",
+                "D. Modify the environment to reduce the severity of allergic symptoms."
+            ],
+            correct: 3, // D
+            rationale: "The client is instructed and assisted to modify the environment to reduce the severity of allergic symptoms or to prevent their occurrence. Deep breathing and coughing are not indicated unless an infection is present. Anaphylaxis requires prompt medical attention, but a minority of allergic reactions is anaphylaxis. Overuse of antihistamines reduces their effectiveness. (PTS:1 REF:p.1054)"
+        },
+        {
+            id: 38,
+            question: "38. The nurse is creating a care plan for a client suffering from allergic rhinitis. What outcome should the nurse identify?",
+            options: [
+                "A. Appropriate use of prophylactic antibiotics",
+                "B. Safe injection of corticosteroids",
+                "C. Improved skin integrity",
+                "D. Improved coping with lifestyle modifications"
+            ],
+            correct: 3, // D
+            rationale: "The goals for the client with allergies may include restoration of normal breathing pattern, increased knowledge about the causes and control of allergic symptoms, improved coping with alterations and modifications, and absence of complications. Antibiotics are not used to treat allergies and corticosteroids, if needed, are not given parenterally. Allergies do not normally threaten skin integrity. (PTS:1 REF:p.1054)"
+        },
+        {
+            id: 39,
+            question: "39. A 5-year-old client has been diagnosed with a severe food allergy. Which instruction should the nurse include when educating the parents about this client's allergy and care?",
+            options: [
+                "A. Wear a medical identification bracelet.",
+                "B. Know how to use the antihistamine pen.",
+                "C. Know how to give injections of lidocaine.",
+                "D. Avoid live attenuated vaccinations."
+            ],
+            correct: 0, // A
+            rationale: "The nurse also advises the parents to have the client wear a medical identification bracelet and to be able to identify symptoms of food allergy. Clients and their families do not carry antihistamine pens, they carry epinephrine pens. Lidocaine is not self-administered to treat allergies. The client may safely be vaccinated. (PTS:1 REF:p.1047)"
+        }
+    ];
+
+    let currentQuestion = 0;
+    let selectedOption = null;
+    let answers = Array(questions.length).fill(null);
+
+    function loadQuestion() {
+        const q = questions[currentQuestion];
+        if (!q) return;
+
+        const progress = ((currentQuestion + 1) / questions.length) * 100;
+        document.getElementById('progressBar').style.width = `${progress}%`;
+        document.getElementById('counter').textContent = `${currentQuestion + 1}/${questions.length}`;
+        document.getElementById('questionNumber').textContent = q.id;
+
+        document.getElementById('question').innerHTML = q.question;
+        loadOptions(q);
+
+        document.getElementById('feedback').style.display = 'none';
+        document.getElementById('rationale').classList.remove('show');
+        document.getElementById('cancelBtn').classList.remove('show');
+
+        document.getElementById('prevBtn').disabled = currentQuestion === 0;
+        const stored = answers[q.id - 1];
+        document.getElementById('nextBtn').disabled = stored === null || stored === undefined;
+        document.getElementById('nextBtn').textContent = currentQuestion >= questions.length - 1 ? 'Finish ➡️' : 'Next ➡️';
+    }
+
+    function loadOptions(q) {
+        const container = document.getElementById('options');
+        container.innerHTML = '';
+        q.options.forEach((opt, idx) => {
+            const div = document.createElement('div');
+            div.className = 'option';
+            div.innerHTML = `<div class="option-letter">${String.fromCharCode(65 + idx)}</div><div>${opt}</div>`;
+            div.onclick = () => selectOption(idx);
+            container.appendChild(div);
+        });
+
+        const saved = answers[q.id - 1];
+        if (saved !== null && saved !== undefined) {
+            selectOption(saved, true);
+        }
+    }
+
+    function selectOption(index, fromMemory = false) {
+        const q = questions[currentQuestion];
+        if (!fromMemory && selectedOption !== null) return;
+
+        if (!fromMemory) {
+            selectedOption = index;
+            answers[q.id - 1] = index;
+        }
+
+        highlightSelected(index, q);
+        showFeedback(index, q);
+        document.getElementById('nextBtn').disabled = false;
+        document.getElementById('cancelBtn').classList.add('show');
+    }
+
+    function highlightSelected(index, q) {
+        const opts = document.querySelectorAll('.option');
+        opts.forEach((opt, i) => opt.classList.remove('correct', 'incorrect'));
+
+        const correctIndices = Array.isArray(q.correct) ? q.correct : [q.correct];
+        if (Array.isArray(q.correct)) {
+            correctIndices.forEach(ci => opts[ci]?.classList.add('correct'));
+            if (!correctIndices.includes(index)) {
+                opts[index]?.classList.add('incorrect');
+            }
+        } else {
+            if (index === q.correct) {
+                opts[index].classList.add('correct');
+            } else {
+                opts[index].classList.add('incorrect');
+                opts[q.correct].classList.add('correct');
+            }
+        }
+    }
+
+    function showFeedback(index, q) {
+        const fb = document.getElementById('feedback');
+        const icon = document.getElementById('feedbackIcon');
+        const text = document.getElementById('feedbackText');
+        const rationaleDiv = document.getElementById('rationale');
+        const rationaleP = document.getElementById('rationaleText');
+
+        const correctIndices = Array.isArray(q.correct) ? q.correct : [q.correct];
+        const isCorrect = correctIndices.includes(index);
+
+        if (isCorrect) {
+            fb.className = 'feedback correct';
+            icon.textContent = '✅';
+            text.textContent = 'CORRECT! Well done.';
+        } else {
+            fb.className = 'feedback incorrect';
+            icon.textContent = '❌';
+            const letters = correctIndices.map(c => String.fromCharCode(65 + c)).join(', ');
+            text.textContent = `INCORRECT. The correct answer(s): ${letters}`;
+        }
+
+        fb.style.display = 'flex';
+        rationaleP.innerHTML = q.rationale;
+        rationaleDiv.classList.add('show');
+    }
+
+    function cancelSelection() {
+        const q = questions[currentQuestion];
+        selectedOption = null;
+        answers[q.id - 1] = null;
+        document.querySelectorAll('.option').forEach(opt => opt.classList.remove('correct', 'incorrect'));
+        document.getElementById('feedback').style.display = 'none';
+        document.getElementById('rationale').classList.remove('show');
+        document.getElementById('cancelBtn').classList.remove('show');
+        document.getElementById('nextBtn').disabled = true;
+    }
+
+    function nextCard() {
+        if (currentQuestion < questions.length - 1) {
+            currentQuestion++;
+            selectedOption = null;
+            loadQuestion();
+        } else {
+            currentQuestion = 0;
+            loadQuestion();
+        }
+    }
+
+    function previousCard() {
+        if (currentQuestion > 0) {
+            currentQuestion--;
+            const q = questions[currentQuestion];
+            selectedOption = answers[q.id - 1];
+            loadQuestion();
+        }
+    }
+
+    // keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        if (e.key >= '1' && e.key <= '4') selectOption(parseInt(e.key)-1);
+        else if (e.key >= 'a' && e.key <= 'd') selectOption(e.key.charCodeAt(0)-97);
+        else if (e.key >= 'A' && e.key <= 'D') selectOption(e.key.charCodeAt(0)-65);
+        else if (e.key === 'ArrowLeft' && !document.getElementById('prevBtn').disabled) previousCard();
+        else if (e.key === 'ArrowRight' && !document.getElementById('nextBtn').disabled) nextCard();
+        else if (e.key === 'Escape' && document.getElementById('cancelBtn').classList.contains('show')) cancelSelection();
+    });
+
+    loadQuestion();
+</script>
+</body>
+</html>
